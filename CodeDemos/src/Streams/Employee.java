@@ -1,5 +1,7 @@
 package Streams;
 
+import java.util.Objects;
+
 public class Employee {
     private String name;
     private String department;
@@ -25,6 +27,28 @@ public class Employee {
 
     public long getSalary() {
         return salary;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return salary == employee.salary && Objects.equals(name, employee.name) && Objects.equals(department, employee.department);
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", department='" + department + '\'' +
+                ", salary=" + salary +
+                '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, department, salary);
     }
 
     public void setSalary(long salary) {
